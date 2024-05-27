@@ -1,13 +1,14 @@
 #!/bin/bash
 
 # listen touchpad with "libinput debug-events" tools  
-libinput debug-events | grep --line-buffered 'GESTURE_HOLD' | while read line
+libinput debug-events | grep --line-buffered 'GESTURE_HOLD_BEGIN.*4$' | while read line
 do
-    if echo "$line" | grep -q 'GESTURE_HOLD_BEGIN.*4'; then
-        xdotool keydown Super key v keyup Super # Opening notification pop-up. You can change according to your request
-    elif echo "$line" | grep -q 'GESTURE_HOLD_END.*4'; then
-        xdotool key Escape # Pop-up opens when 4 fingers holding on the touchpad, if you remove your fingers "Escape" key working, then pop-up closes.
-    fi
+    echo "$line"
+    xdotool keydown Super key v keyup Super # Opening notification pop-up. You can change according to your request
+done
+libinput debug-events | grep --line-buffered 'GESTURE_HOLD_END.*4$' | while read line
+do
+    xdotool key Escape # Pop-up opens when 4 fingers holding on the touchpad, if you remove your fingers "Escape" key working, then pop-up closes.
 done
 
 # download this file and execute this commands:
