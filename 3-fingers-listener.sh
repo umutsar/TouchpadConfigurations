@@ -1,14 +1,16 @@
 #!/bin/bash
 
 # listen touchpad with "libinput debug-events" tools
-libinput debug-events | grep --line-buffered 'GESTURE_HOLD' | while read line
+libinput debug-events | grep --line-buffered 'GESTURE_HOLD_BEGIN.*4$' | while read line
 do
-    if echo "$line" | grep -q 'GESTURE_HOLD_BEGIN.*3'; then # Mute sound. You can change according to your request
-        xdotool key XF86AudioMute
-    elif echo "$line" | grep -q 'GESTURE_HOLD_END.*3'; then # Mute sound. You can change according to your request
-        xdotool key XF86AudioMute
-    fi
+    echo "$line"
+    xdotool keydown Super key v keyup Super
 done
+libinput debug-events | grep --line-buffered 'GESTURE_HOLD_END.*4$' | while read line
+do
+    xdotool key Escape
+done
+
 
 
 # download this file and execute this commands:
