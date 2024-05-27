@@ -7,4 +7,4 @@ nano ~/.config/autostart/example.desktop  # create a .desktop file and copy to b
 [Desktop Entry]  
 Type=Application  
 Name=My Application  
-Exec=/home/YourUsername/scripts/script.sh  
+Exec=/home/YourUsername/scripts/script.sh  # should be your script path (Give permission to your file with chmod +x)
