@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # listen touchpad with "libinput debug-events" tools
-libinput debug-events | grep --line-buffered 'GESTURE_HOLD_BEGIN.*4$' | while read line
+libinput debug-events | grep --line-buffered 'GESTURE_HOLD_BEGIN.*3$' | while read line
 do
     echo "$line"
-    xdotool keydown Super key v keyup Super
+    xdotool key XF86AudioMute
 done
-libinput debug-events | grep --line-buffered 'GESTURE_HOLD_END.*4$' | while read line
+libinput debug-events | grep --line-buffered 'GESTURE_HOLD_END.*3$' | while read line
 do
-    xdotool key Escape
+    xdotool key XF86AudioMute
 done
 
 
